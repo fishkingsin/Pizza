@@ -31,4 +31,4 @@
 
 ## Caution
 
-  * in not reason all UUID should be in lowercase
+  * in no reason all UUIDs should be in lowercase
