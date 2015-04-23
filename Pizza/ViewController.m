@@ -9,12 +9,15 @@
 #import "ViewController.h"
 #import "LGBLuetooth.h"
 #import "Pizza.h"
+#import "MHRotaryKnob.h"
 static NSString * const PizzaServiceUUID = @"13333333-3333-3333-3333-333333333337";
 static NSString * const PizzaCrustCharacteristicUUID = @"13333333-3333-3333-3333-333333330001";
 static NSString * const PizzaToppingsCharacteristicUUID = @"13333333-3333-3333-3333-333333330002";
 static NSString * const PizzaBakeCharacteristicUUID = @"13333333-3333-3333-3333-333333330003";
 @interface ViewController ()<PizzaDelegate>
 @property (weak, nonatomic) IBOutlet UITextView *logTextView;
+@property (weak, nonatomic) IBOutlet MHRotaryKnob *rotaryKnob;
+@property (weak, nonatomic) IBOutlet UILabel *degreeLabel;
 @property(strong,nonatomic) LGPeripheral *myPeripheral;
 @property(strong,nonatomic) LGService *PizzaService;
 @property(strong,nonatomic) LGCharacteristic *PizzaCrustCharacteristic;
@@ -28,7 +31,20 @@ static NSString * const PizzaBakeCharacteristicUUID = @"13333333-3333-3333-3333-
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    
+    self.rotaryKnob.interactionStyle = MHRotaryKnobInteractionStyleRotating;
+    self.rotaryKnob.scalingFactor = 1.5f;
+    self.rotaryKnob.maximumValue = 600;
+    self.rotaryKnob.minimumValue = 300;
+    self.rotaryKnob.value = 450;
+    self.rotaryKnob.defaultValue = self.rotaryKnob.value;
+    self.rotaryKnob.resetsToDefault = YES;
+    self.rotaryKnob.backgroundColor = [UIColor clearColor];
+    self.rotaryKnob.backgroundImage = [UIImage imageNamed:@"Knob Background.png"];
+    [self.rotaryKnob setKnobImage:[UIImage imageNamed:@"Knob.png"] forState:UIControlStateNormal];
+    [self.rotaryKnob setKnobImage:[UIImage imageNamed:@"Knob Highlighted.png"] forState:UIControlStateHighlighted];
+    [self.rotaryKnob setKnobImage:[UIImage imageNamed:@"Knob Disabled.png"] forState:UIControlStateDisabled];
+    self.rotaryKnob.knobImageCenter = CGPointMake(80.0f, 76.0f);
+    [self.rotaryKnob addTarget:self action:@selector(rotaryKnobDidChange) forControlEvents:UIControlEventValueChanged];
     // Do any additional setup after loading the view, typically from a nib.
 }
 
@@ -76,7 +92,7 @@ static NSString * const PizzaBakeCharacteristicUUID = @"13333333-3333-3333-3333-
                         else
                         {
                             unsigned char * raw_data = malloc(2);
-                            int value = 450;
+                            int value = self.rotaryKnob.value;
                             raw_data[1]=value & 0xff;
                             raw_data[0]=(value >> 8);
                             printf("%i %i",raw_data[0],raw_data[1]);
@@ -99,7 +115,13 @@ static NSString * const PizzaBakeCharacteristicUUID = @"13333333-3333-3333-3333-
                                   (result == CRISPY) ? "crispy." :
                                   (result == BURNT) ? "burnt." :
                                   (result == ON_FIRE) ? "on fire!" :
-                                  "unknown?"]];                        }
+                                  "unknown?"]];
+                            [weakSelf.PizzaToppingsCharacteristic readValueWithBlock:^(NSData *data, NSError *error) {
+                                unsigned char* toppingResultByte = malloc(2);
+                                [data getBytes:toppingResultByte length:2];
+                                [self logToTextView:[NSString stringWithFormat:@"PizzaToppings %i %i",toppingResultByte[0],toppingResultByte[1]]];
+                            }];
+                        }
                         else {
                             [self logToTextView:[NSString stringWithFormat:@"result length incorrect"]];
                         }
@@ -188,7 +210,15 @@ static NSString * const PizzaBakeCharacteristicUUID = @"13333333-3333-3333-3333-
 -(void)logToTextView:(NSString*)message
 {
     self.logTextView.text = [self.logTextView.text stringByAppendingString:[NSString stringWithFormat:@"%@\n",message]];
+    [self.logTextView layoutIfNeeded];
+    NSRange range = NSMakeRange(self.logTextView.text.length - 2, 1); //I ignore the final carriage return, to avoid a blank line at the bottom
+    [self.logTextView scrollRangeToVisible:range];
 }
+- (IBAction)rotaryKnobDidChange
+{
+    self.degreeLabel.text = [NSString stringWithFormat:@"%.3f", self.rotaryKnob.value];
+}
+
 #pragma mark - PizzaDelegate
 
 -(void)bakeResult:(PizzaBakeResult)result

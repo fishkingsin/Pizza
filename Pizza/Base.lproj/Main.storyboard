@@ -36,11 +36,17 @@
                                 </connections>
                             </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ekd-Sp-RUc">
-                                <rect key="frame" x="24" y="28" width="552" height="488"/>
+                                <rect key="frame" x="24" y="28" width="552" height="184"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="450" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5cv-0B-bOL">
+                                <rect key="frame" x="286" y="388" width="29" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ewX-dP-1xC">
                                 <rect key="frame" x="525" y="562" width="67" height="30"/>
                                 <state key="normal" title="Clear Log">
@@ -50,24 +56,44 @@
                                     <action selector="clearLog:" destination="BYZ-38-t0r" eventType="touchUpInside" id="cHa-Fu-z82"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TRN-IO-FAa" customClass="MHRotaryKnob">
+                                <rect key="frame" x="220" y="220" width="160" height="160"/>
+                                <color key="backgroundColor" red="0.90588241815567017" green="0.85882359743118286" blue="0.42745101451873779" alpha="1" colorSpace="deviceRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="160" id="3jW-1x-KBI"/>
+                                    <constraint firstAttribute="width" constant="160" id="Pzj-Bc-mxN"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="5cv-0B-bOL" firstAttribute="top" secondItem="TRN-IO-FAa" secondAttribute="bottom" constant="8" id="04q-Oj-JN2"/>
                             <constraint firstItem="ekd-Sp-RUc" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="8" id="4v3-bK-jCZ"/>
+                            <constraint firstAttribute="centerX" secondItem="5cv-0B-bOL" secondAttribute="centerX" id="8cu-la-CcU"/>
                             <constraint firstAttribute="centerX" secondItem="iqq-xT-zow" secondAttribute="centerX" id="Fca-bF-0x4"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="iqq-xT-zow" secondAttribute="bottom" constant="8" id="Q41-Mn-8Da"/>
                             <constraint firstItem="iqq-xT-zow" firstAttribute="top" secondItem="XfL-ev-3fr" secondAttribute="bottom" constant="8" id="WMw-fj-PrY"/>
+                            <constraint firstAttribute="centerX" secondItem="TRN-IO-FAa" secondAttribute="centerX" id="ZO3-N8-WXj"/>
                             <constraint firstAttribute="trailingMargin" secondItem="ekd-Sp-RUc" secondAttribute="trailing" constant="8" id="bpz-xa-5Ho"/>
                             <constraint firstItem="ekd-Sp-RUc" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="fMz-di-uEF"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="ewX-dP-1xC" secondAttribute="bottom" constant="8" id="fqy-FR-rp7"/>
                             <constraint firstAttribute="centerX" secondItem="ekd-Sp-RUc" secondAttribute="centerX" id="gYe-K6-sg7"/>
                             <constraint firstAttribute="centerX" secondItem="XfL-ev-3fr" secondAttribute="centerX" id="jFA-vg-rvw"/>
+                            <constraint firstAttribute="centerY" secondItem="TRN-IO-FAa" secondAttribute="centerY" id="jj3-1q-UM5"/>
                             <constraint firstItem="XfL-ev-3fr" firstAttribute="top" secondItem="ekd-Sp-RUc" secondAttribute="bottom" constant="8" id="pKj-MZ-jAO"/>
+                            <constraint firstItem="TRN-IO-FAa" firstAttribute="top" secondItem="ekd-Sp-RUc" secondAttribute="bottom" constant="8" id="r80-mW-dBF"/>
                             <constraint firstItem="ewX-dP-1xC" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" constant="8" id="ugz-me-xxO"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="pKj-MZ-jAO"/>
+                            </mask>
+                        </variation>
                     </view>
                     <connections>
+                        <outlet property="degreeLabel" destination="5cv-0B-bOL" id="wcV-Mo-Vbl"/>
                         <outlet property="logTextView" destination="ekd-Sp-RUc" id="qZA-em-i4O"/>
+                        <outlet property="rotaryKnob" destination="TRN-IO-FAa" id="bvq-hQ-v32"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
