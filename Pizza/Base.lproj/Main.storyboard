@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XfL-ev-3fr">
+                                <rect key="frame" x="276" y="524" width="48" height="30"/>
+                                <state key="normal" title="Search">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="searchPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="dkv-oG-Wap"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iqq-xT-zow">
+                                <rect key="frame" x="283" y="562" width="35" height="30"/>
+                                <state key="normal" title="Bake">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="bakePressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="4am-Q1-Rm2"/>
+                                </connections>
+                            </button>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ekd-Sp-RUc">
+                                <rect key="frame" x="24" y="28" width="552" height="488"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ewX-dP-1xC">
+                                <rect key="frame" x="525" y="562" width="67" height="30"/>
+                                <state key="normal" title="Clear Log">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="clearLog:" destination="BYZ-38-t0r" eventType="touchUpInside" id="cHa-Fu-z82"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="ekd-Sp-RUc" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="8" id="4v3-bK-jCZ"/>
+                            <constraint firstAttribute="centerX" secondItem="iqq-xT-zow" secondAttribute="centerX" id="Fca-bF-0x4"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="iqq-xT-zow" secondAttribute="bottom" constant="8" id="Q41-Mn-8Da"/>
+                            <constraint firstItem="iqq-xT-zow" firstAttribute="top" secondItem="XfL-ev-3fr" secondAttribute="bottom" constant="8" id="WMw-fj-PrY"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="ekd-Sp-RUc" secondAttribute="trailing" constant="8" id="bpz-xa-5Ho"/>
+                            <constraint firstItem="ekd-Sp-RUc" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="fMz-di-uEF"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="ewX-dP-1xC" secondAttribute="bottom" constant="8" id="fqy-FR-rp7"/>
+                            <constraint firstAttribute="centerX" secondItem="ekd-Sp-RUc" secondAttribute="centerX" id="gYe-K6-sg7"/>
+                            <constraint firstAttribute="centerX" secondItem="XfL-ev-3fr" secondAttribute="centerX" id="jFA-vg-rvw"/>
+                            <constraint firstItem="XfL-ev-3fr" firstAttribute="top" secondItem="ekd-Sp-RUc" secondAttribute="bottom" constant="8" id="pKj-MZ-jAO"/>
+                            <constraint firstItem="ewX-dP-1xC" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" constant="8" id="ugz-me-xxO"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="logTextView" destination="ekd-Sp-RUc" id="qZA-em-i4O"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
+    </scenes>
+</document>
